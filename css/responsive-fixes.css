@@ -1,0 +1,106 @@
+/* Fix for containers to prevent horizontal overflow */
+.container {
+  max-width: 100% !important;
+  padding-left: var(--space-4) !important;
+  padding-right: var(--space-4) !important;
+  overflow-x: hidden !important;
+}
+
+/* Adjust grids for better mobile display */
+@media (max-width: 768px) {
+  /* About page adjustments */
+  .features-grid,
+  .roadmap-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 var(--space-2) !important;
+  }
+
+  /* Contact page adjustments */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 var(--space-2) !important;
+  }
+
+  /* Shared mobile adjustments */
+  .section-heading {
+    padding: 0 var(--space-2) !important;
+  }
+
+  /* Limit image size on mobile */
+  .showcase-image,
+  .hero-image img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Footer adjustments */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-6) !important;
+    padding: 0 var(--space-2) !important;
+  }
+}
+
+/* Ensure smaller screens don't have overflow issues */
+@media (max-width: 480px) {
+  /* Reduce padding on smaller screens */
+  .contact-hero,
+  .about-hero,
+  .hero,
+  .features,
+  .how-it-works,
+  .roadmap,
+  .cta-section {
+    padding: var(--space-8) 0 !important;
+  }
+
+  /* Adjust text sizing for readability */
+  h1 {
+    font-size: var(--text-2xl) !important;
+  }
+
+  h2 {
+    font-size: var(--text-xl) !important;
+  }
+
+  .hero-subtitle,
+  .section-subtitle {
+    font-size: var(--text-base) !important;
+  }
+
+  /* Ensure buttons fit on small screens */
+  .btn {
+    padding: var(--space-2) var(--space-3) !important;
+  }
+
+  /* Improve cards display on small screens */
+  .feature-card,
+  .roadmap-item,
+  .info-card {
+    padding: var(--space-3) !important;
+  }
+}
+
+/* Fix for mobile menu toggle */
+.main-nav.active {
+  right: 0 !important;
+  display: block !important;
+  overflow-y: auto !important;
+}
+
+/* Adjustments to ensure header elements are properly sized on mobile */
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: var(--text-lg) !important;
+  }
+
+  .main-nav .nav-list {
+    gap: var(--space-4) !important;
+  }
+}
+
+/* Fix for images in the canvas area */
+.canvas-container img {
+  max-width: 100% !important;
+  height: auto !important;
+}

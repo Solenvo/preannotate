@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Contact PreAnnotate – get in touch for support or inquiries regarding our secure, local image annotation tool.">
+  <meta name="keywords" content="Contact, PreAnnotate, Image Annotation, Secure, Support">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – PreAnnotate</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/contact.css">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-wrapper">
+        <a href="/" class="logo-wrapper">
+          <img src="/icons/favicon-32x32.png" alt="PreAnnotate Logo" width="32" height="32">
+          <span class="logo-text">PreAnnotate</span>
+        </a>
+        <nav class="main-nav">
+          <ul class="nav-list">
+              <li><a href="/about" class="nav-link">About</a></li>
+              <li><a href="/contact" class="nav-link">Contact</a></li>
+              <li><a href="https://github.com/AndreiBulzan/preannotate" class="nav-link" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github"></i> GitHub
+              </a></li>
+              <li><a href="/app" class="btn btn-primary"><i class="fas fa-play"></i> Launch App</a></li>
+          </ul>
+      </nav>
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+      <div class="container">
+        <div class="contact-hero-content">
+          <h1>Contact Us</h1>
+          <p class="hero-subtitle">We’d love to hear from you. Reach out with any questions or feedback!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Contact Info Cards -->
+          <div class="contact-info">
+
+            <div class="info-card">
+              <div class="icon-wrapper">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email</h3>
+              <p>contact@preannotate.com</p>
+              <a href="mailto:contact@preannotate.com" class="info-link">Send an Email</a>
+            </div>
+          </div>
+
+          <!-- Contact Form Card -->
+          <div class="form-container">
+            <div class="card">
+              <div class="card-header">
+                <h2>Get in Touch</h2>
+              </div>
+              <div class="card-body">
+                <!-- Form code went here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+              <img src="/icons/favicon-32x32.png" alt="PreAnnotate Logo" width="32" height="32">
+              <span>PreAnnotate</span>
+          </a>
+          <p>A free, secure, and private web application for annotating 2D images locally.</p>
+          <p class="open-source-note">
+              <i class="fab fa-github"></i> Open source on 
+              <a href="https://github.com/AndreiBulzan/preannotate" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </p>
+      </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/app">Launch App</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Get Started</h4>
+          <ul>
+            <li><a href="/app">Try PreAnnotate</a></li>
+            <li><a href="/about#features">Features</a></li>
+            <li><a href="/about#future">Roadmap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 PreAnnotate. All rights reserved.</p>
+        <div class="coming-soon-badge">
+          <i class="fas fa-hourglass-half"></i>
+          <span>More Features Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+
+      mobileMenuToggle.addEventListener('click', function() {
+        mainNav.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

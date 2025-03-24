@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PreAnnotate App - Annotate Images Locally</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/design-system.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- App Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <a href="/" class="app-logo">
+                    <img src="/icons/favicon-32x32.png" alt="PreAnnotate Logo" width="24" height="24">
+                    <span>PreAnnotate</span>
+                </a>
+                <div class="document-status">
+                    <div class="status-badge">
+                        <i class="fas fa-circle status-indicator"></i>
+                        <span>Local Mode</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="/about" class="btn btn-ghost btn-icon" title="About PreAnnotate">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a href="/contact" class="btn btn-ghost btn-icon" title="Contact Us">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <button class="btn btn-ghost btn-icon" id="helpBtn" title="Help">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </header>
+        <!-- Main App Content -->
+        <main class="app-main">
+            <!-- Sidebar with Class Management -->
+            <aside class="app-sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2>Classes</h2>
+                </div>
+                <div class="class-input-container">
+                    <div class="form-group search-form">
+                        <div class="input-icon-wrapper">
+                            <i class="fas fa-search input-icon"></i>
+                            <input type="text" id="classInput" class="form-control" placeholder="Add/Search Class">
+                        </div>
+                    </div>
+                    <div id="welcomeBubble" class="tooltip-bubble hidden">
+                        <span class="bubble-text">Add a new class to start annotating!</span>
+                        <button id="closeBubbleBtn" class="bubble-close-btn" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mode-status">
+                    <span id="status">Mode: None</span>
+                </div>
+                <div class="classes-container">
+                    <ul id="classList" class="classes-list"></ul>
+                </div>
+            </aside>
+            <!-- Main Canvas Area - IMPORTANT: Keeping the image-section class for compatibility -->
+            <section class="canvas-area image-section">
+                <div id="container" class="canvas-container">
+                    <canvas id="imageCanvas"></canvas>
+                    <div id="dropZone" class="drop-zone hidden">
+                        <div class="drop-zone-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & Drop Images Here</p>
+                            <span>or</span>
+                            <button class="btn btn-outline">Browse Files</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controls Bar -->
+                <div class="controls-bar">
+                    <div class="controls-section left-controls">
+                        <div class="upload-area" id="uploadArea">
+                            <label for="fileInput" class="btn btn-primary btn-with-icon upload-label" title="Upload Images">
+                                <i class="fas fa-upload"></i>
+                                <span class="button-text">Upload</span>
+                            </label>
+                            <input type="file" id="fileInput" multiple accept="image/*">
+                        </div>
+                        <div class="import-export-area" id="importExportArea" style="position: relative; display: inline-block;">
+                            <button id="importExportBtn" class="btn btn-outline btn-with-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span class="button-text">Import/Export</span>
+                            </button>
+                            
+                            <!-- Dropdown menu with upward positioning -->
+                            <div id="importExportOptions" class="import-export-options" style="display: none; position: absolute; bottom: 100%; left: 0; margin-bottom: 5px; background-color: #ffffff; border: 1px solid var(--color-border); border-radius: 4px; box-shadow: 0 -2px 8px rgba(0,0,0,0.2); z-index: 1000; min-width: 220px; padding: 8px;">
+                                <!-- Export Annotations -->
+                                <button id="exportAnnotationsBtn" class="import-export-option" data-label="Ann">
+                                    <i class="fas fa-file-export" style="margin-right: 8px;"></i>
+                                    <span>Export Annotations</span>
+                                </button>
+                                
+                                <!-- Export Annotations & Images -->
+                                <button id="exportAllBtn" class="import-export-option" data-label="Ann & Img">
+                                    <i class="fas fa-file-archive" style="margin-right: 8px;"></i>
+                                    <span>Export All (Ann + Img)</span>
+                                </button>
+                                
+                                <!-- Import Annotations -->
+                                <button id="importAnnotationsBtn" class="import-export-option" data-label="Ann">
+                                    <i class="fas fa-file-import" style="margin-right: 8px;"></i>
+                                    <span>Import Annotations</span>
+                                </button>
+                                
+                                <!-- Import Annotations & Images -->
+                                <button id="importAllBtn" class="import-export-option" data-label="Ann & Img">
+                                    <i class="fas fa-download" style="margin-right: 8px;"></i>
+                                    <span>Import All (Ann + Img)</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Hidden file inputs -->
+                            <input type="file" id="importAnnotationsInput" accept=".zip" style="display: none;">
+                            <input type="file" id="importAllInput" accept=".zip" style="display: none;">
+                        </div>
+                        
+                        <!-- Remove any inline script here and add external script instead -->
+                        <script src="/js/importExport.js"></script>
+                    </div>
+                    <div class="controls-section navigation">
+                        <div class="navigation-controls">
+                            <button id="prevBtn" class="btn btn-icon btn-outline" disabled title="Previous Image">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span id="imageCounter" class="image-counter" contenteditable="true" title="Click to edit and press Enter to jump">0 / 0</span>
+                            <button id="nextBtn" class="btn btn-icon btn-outline" disabled title="Next Image">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="controls-section zoom-controls">
+                        <button id="zoomInBtn" class="btn btn-icon btn-outline zoom-btn" title="Zoom In">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button id="zoomOutBtn" class="btn btn-icon btn-outline zoom-btn" title="Zoom Out">
+                            <i class="fas fa-search-minus"></i>
+                        </button>
+                        <button id="resetZoomBtn" class="btn btn-icon btn-outline zoom-btn" title="Reset Zoom">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <span id="zoomLevel" class="zoom-level">100%</span>
+                        <div id="modeToggle" class="mode-toggle move-mode" title="Toggle Draw/Move Mode" role="button" tabindex="0" aria-pressed="false">
+                            <div class="toggle-track">
+                                <div class="toggle-indicator">
+                                    <i id="toggleIcon" class="fas fa-arrows-alt toggle-icon"></i>
+                                </div>
+                            </div>
+                            <span class="toggle-label">Move</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Export Progress Container - Initially hidden -->
+                <div id="exportProgressContainer" class="progress-overlay hidden export-progress-container">
+                    <div class="progress-content">
+                        <h3>Exporting Data</h3>
+                        <div class="progress-bar-container">
+                            <progress id="exportProgress" max="100" value="0"></progress>
+                            <span id="exportProgressText">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Thumbnails Panel -->
+            <aside class="thumbnails-panel" id="thumbnailPanel">
+                <div class="sidebar-header">
+                    <h2>Images</h2>
+                </div>
+                <div id="thumbnailsContainer" class="thumbnails-container"></div>
+            </aside>
+        </main>
+    </div>
+    
+    <!-- Help Popup -->
+    <div id="helpPopup" class="help-dialog hidden help-popup">
+        <div class="help-dialog-content">
+            <div class="help-header">
+                <h3>Keyboard Shortcuts</h3>
+                <button id="closeHelpBtn" class="btn btn-icon btn-ghost">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="help-body">
+                <div class="shortcut-item">
+                    <kbd>Ctrl + A</kbd>
+                    <span>Draw Mode</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Ctrl + M</kbd>
+                    <span>Move Mode</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Alt + A</kbd>
+                    <span>Auto Annotate</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Del</kbd>
+                    <span>Delete Selected Annotation</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>←</kbd>
+                    <span>Previous Image</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>→</kbd>
+                    <span>Next Image</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Tab</kbd>
+                    <span>Cycle Between Annotations</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include Required Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    
+    <!-- Main App Script - Load this first to ensure global objects like 'images' are available -->
+    <script src="/script.js"></script>
+    
+    <!-- Enhanced Object Detection & Model Training Scripts - Note the specific load order! -->
+    <script src="/js/enhancedObjectDetection.js"></script>
+    <script src="/js/modelTrainer.js"></script>
+    <script src="/js/advancedDetectionUI.js"></script>
+    <script src="/js/enhancedAutoAnnotate.js"></script>
+    
+    <!-- Help Dialog Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const helpBtn = document.getElementById('helpBtn');
+            const helpPopup = document.getElementById('helpPopup');
+            const closeHelpBtn = document.getElementById('closeHelpBtn');
+            
+            if (helpBtn && helpPopup && closeHelpBtn) {
+                helpBtn.addEventListener('click', function() {
+                    helpPopup.classList.toggle('hidden');
+                });
+                
+                closeHelpBtn.addEventListener('click', function() {
+                    helpPopup.classList.add('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

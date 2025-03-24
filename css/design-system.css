@@ -1,0 +1,349 @@
+/* Modern Design System for PreAnnotate */
+
+:root {
+  /* Primary Color Palette */
+  --color-primary: #3563E9;         /* Vibrant blue - brand primary */
+  --color-primary-dark: #2447C0;    /* Darker blue for hover states */
+  --color-primary-light: #EEF2FF;   /* Light blue for backgrounds */
+
+  /* Secondary Colors */
+  --color-secondary: #FF5E1A;       /* Vivid orange - accent */
+  --color-secondary-dark: #E04500;  /* Darker orange for hover */
+  --color-secondary-light: #FFEDE5; /* Light orange for subtle elements */
+
+  /* Neutral Colors */
+  --color-background: #FFFFFF;      /* White background */
+  --color-surface: #F8FAFC;         /* Off-white for cards/panels */
+  --color-border: #E2E8F0;          /* Light gray for borders */
+
+  /* Text Colors */
+  --color-text-primary: #1E293B;    /* Dark slate for primary text */
+  --color-text-secondary: #64748B;  /* Medium slate for secondary text */
+  --color-text-disabled: #94A3B8;   /* Light slate for disabled text */
+  --color-text-on-primary: #FFFFFF; /* White text on primary color */
+
+  /* Functional Colors */
+  --color-success: #10B981;         /* Green for success states */
+  --color-warning: #F59E0B;         /* Amber for warnings */
+  --color-error: #EF4444;           /* Red for errors */
+  --color-info: #3B82F6;            /* Blue for info */
+
+  /* App Specific Colors */
+  --color-canvas-bg: #F8FAFC;       /* Background for canvas area */
+  --color-sidebar-bg: #FFFFFF;      /* Sidebar background */
+  --color-toolbar-bg: #FFFFFF;      /* Toolbar background */
+  --color-modal-overlay: rgba(15, 23, 42, 0.5); /* Modal background overlay */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Typography */
+  --font-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Roboto Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Spacing */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* Border Radius */
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem;   /* 8px */
+  --radius-xl: 0.75rem;  /* 12px */
+  --radius-2xl: 1rem;    /* 16px */
+  --radius-full: 9999px; /* Full rounded (for circles, pills) */
+
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-normal: 250ms;
+  --transition-slow: 350ms;
+
+  /* Z-index layers */
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-30: 30;
+  --z-40: 40;
+  --z-50: 50;
+  --z-modal: 100;
+  --z-tooltip: 200;
+  --z-toast: 300;
+}
+
+/* Base Typography */
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  line-height: var(--leading-tight);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--space-6);
+}
+
+h2 {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-5);
+}
+
+h3 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-4);
+}
+
+h4 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-3);
+}
+
+p {
+  margin: 0 0 var(--space-4) 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast) ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Modern Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: var(--leading-normal);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border: 1px solid var(--color-primary);
+  transition: all var(--transition-fast) ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark); /* Use darker background instead of light */
+  color: var(--color-text-on-primary); /* Keep text white for better contrast */
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 2px 5px rgba(var(--color-primary-rgb), 0.4); /* Add subtle shadow for depth */
+}
+
+/* Add focus state for accessibility */
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-on-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-primary);
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-surface);
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+}
+
+.form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+  outline: none;
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.card-body {
+  padding: var(--space-6);
+}
+
+.card-footer {
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Badge Styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.4; /* Improved line height */
+  padding: var(--space-2) var(--space-3); /* Increased padding */
+  border-radius: var(--radius-full);
+  margin: var(--space-1) 0; /* Add some vertical margin */
+}
+
+.badge i {
+  margin-right: var(--space-2); /* Add space between icon and text */
+  font-size: 14px; /* Slightly larger icon */
+}
+
+.badge-primary {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.3); /* Add subtle border */
+  height: auto; /* Allow natural height */
+  min-height: 28px; /* Set minimum height */
+}
+
+/* When within hero-content */
+.hero-content .badge {
+  margin-bottom: var(--space-2); /* Extra margin when in hero */
+}
+
+.badge-secondary {
+    background-color: var(--color-secondary-light, #FFEDE5); /* Light orange */
+    color: var(--color-secondary, #FF5E1A); /* Vivid orange */
+    border: 1px solid rgba(255, 94, 26, 0.2); /* Subtle border */
+}
+
+/* Add some spacing when badge is at the top of roadmap items */
+.roadmap-item .badge {
+    margin-bottom: var(--space-2);
+}
+
+/* Make sure both primary and secondary badges have the same visual weight */
+.badge-primary, .badge-secondary {
+    padding: var(--space-1) var(--space-3); /* Consistent padding */
+    font-size: 0.75rem; /* Consistent font size */
+    letter-spacing: 0.02em; /* Slight letter spacing for readability */
+}
+
+/* Modern Scroll Bar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
